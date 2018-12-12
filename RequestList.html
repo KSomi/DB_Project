@@ -27,26 +27,11 @@
     }
 
     </style>
-    <script type="text/javascript">
-        
-        function page(){
-
-        }
-
-        function datesort(){
-
-        }
-
-        function paysort(){
-
-        }
-
-
-    </script>
+    
     <script>
-        $(function(){
-            $("#includedContent").load("menubar.html");
-        });
+    $(function(){
+        $("#includedContent").load("menubar.html");
+    });
     </script>
     <?
       include "dbConnect.php";
@@ -61,6 +46,7 @@
 
 <div class="page-holder">
     <div id="includedContent"></div>
+
 
     <div class="body-holder">
 
@@ -151,7 +137,8 @@ $e = $row['Pro_e'];
 $sql = "SELECT * FROM request WHERE Complete = '0' AND Accepted = '0' AND Minimum_career <= '{$user_career}' AND Pro_c <= '{$c}' AND Pro_j <= '{$j}' AND Pro_js <= '{$js}' AND Pro_p <= '{$p}' AND Pro_e <= '{$e}'";
 
 $res = $dbConnect->query($sql);
-
+$arr = [];
+$count = 0;
 while($row = mysqli_fetch_array($res))
 {
   $number = $row['NUM'];
@@ -163,7 +150,7 @@ while($row = mysqli_fetch_array($res))
   $req_e = $row['Pro_e'];
   $req_career = $row['Minimum_career'];
   $req_day = $row['Start_date'];
-
+  $arr[$count++]=[$number,$budget,$req_c,$req_j,$req_js,$req_p,$req_e,$req_career,$req_day];
   echo "<script>    if($req_c !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>C/C++</td></tr>\"; }    if($req_j !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Java</td></tr>\"; }    if($req_js !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>JavaScript</td></tr>\"; }    if($req_p !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Python</td></tr>\"; }    if($req_e !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>etc</td></tr>\"; }    </script>";
 
     $i = $i + 1;
@@ -178,6 +165,87 @@ if(<?=$req_js?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$
 if(<?=$req_p?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>Python</td></tr>"; }
 if(<?=$req_e?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>etc</td></tr>"; }*/
 </script>
+
+<script type="text/javascript">
+        var arr;
+        var Barr=[];
+        var Darr = [];
+        arr = <?php echo json_encode($arr)?>;
+        for(var i = 0; i<arr.length; i++){
+            Barr[i] = ['-1', '-1'];
+            Darr[i] = ['-1', '-1'];
+        }
+
+        function page(){
+
+        }
+
+        function paySort(){
+       
+            for(var i = 0; i<arr.length; i++){
+                Barr[i][0] = arr[i][1];
+            }
+            for(var i = 0; i<arr.length; i++){
+                Barr[i][1] = (i);
+            }
+            Barr.sort(function(a,b){
+                return a[0]-b[0];
+            });
+          
+            document.getElementById('t_list').innerHTML = "<tr><th>프로젝트</th><th>개발 금액</th><th>시작일</th><th>경력</th><th>언어 종류</th></tr>";;
+            for(var i = 0; i<arr.length; i++){
+                if(arr[(Barr[i][1])][2] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Barr[i][1])][0]+"</td><td>"+arr[(Barr[i][1])][1]+"</td><td>"+arr[(Barr[i][1])][8]+"</td><td>"+arr[(Barr[i][1])][7]+"</td><td>C/C++</td></tr>"; 
+                }    
+                if(arr[(Barr[i][1])][3] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Barr[i][1])][0]+"</td><td>"+arr[(Barr[i][1])][1]+"</td><td>"+arr[(Barr[i][1])][8]+"</td><td>"+arr[(Barr[i][1])][7]+"</td><td>Java</td></tr>"; 
+                }    
+                if(arr[(Barr[i][1])][4] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Barr[i][1])][0]+"</td><td>"+arr[(Barr[i][1])][1]+"</td><td>"+arr[(Barr[i][1])][8]+"</td><td>"+arr[(Barr[i][1])][7]+"</td><td>JavaScript</td></tr>"; 
+                }    
+                if(arr[(Barr[i][1])][5] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Barr[i][1])][0]+"</td><td>"+arr[(Barr[i][1])][1]+"</td><td>"+arr[(Barr[i][1])][8]+"</td><td>"+arr[(Barr[i][1])][7]+"</td><td>Python</td></tr>"; 
+                }    
+                if(arr[(Barr[i][1])][6] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Barr[i][1])][0]+"</td><td>"+arr[(Barr[i][1])][1]+"</td><td>"+arr[(Barr[i][1])][8]+"</td><td>"+arr[(Barr[i][1])][7]+"</td><td>etc</td></tr>";
+                }
+            }
+            
+        }
+
+        function dateSort(){
+            for(var i = 0; i<arr.length; i++){
+                Darr[i][0] = arr[i][8];
+            }
+            for(var i = 0; i<arr.length; i++){
+                Darr[i][1] = (i);
+            }
+            Barr.sort(function(a,b){
+                return a[0]-b[0];
+            });
+ 
+            document.getElementById('t_list').innerHTML = "<tr><th>프로젝트</th><th>개발 금액</th><th>시작일</th><th>경력</th><th>언어 종류</th></tr>";
+            for(var i = 0; i<arr.length; i++){
+                if(arr[(Darr[i][1])][2] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Darr[i][1])][0]+"</td><td>"+arr[(Darr[i][1])][1]+"</td><td>"+arr[(Darr[i][1])][8]+"</td><td>"+arr[(Darr[i][1])][7]+"</td><td>C/C++</td></tr>"; 
+                }    
+                if(arr[(Darr[i][1])][3] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Darr[i][1])][0]+"</td><td>"+arr[(Darr[i][1])][1]+"</td><td>"+arr[(Darr[i][1])][8]+"</td><td>"+arr[(Darr[i][1])][7]+"</td><td>Java</td></tr>"; 
+                }    
+                if(arr[(Darr[i][1])][4] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Darr[i][1])][0]+"</td><td>"+arr[(Darr[i][1])][1]+"</td><td>"+arr[(Darr[i][1])][8]+"</td><td>"+arr[(Darr[i][1])][7]+"</td><td>JavaScript</td></tr>"; 
+                }    
+                if(arr[(Darr[i][1])][5] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Darr[i][1])][0]+"</td><td>"+arr[(Darr[i][1])][1]+"</td><td>"+arr[(Darr[i][1])][8]+"</td><td>"+arr[(Darr[i][1])][7]+"</td><td>Python</td></tr>"; 
+                }    
+                if(arr[(Darr[i][1])][6] !=0){
+                    document.getElementById('t_list').innerHTML +="<tr><td>"+arr[(Darr[i][1])][0]+"</td><td>"+arr[(Darr[i][1])][1]+"</td><td>"+arr[(Darr[i][1])][8]+"</td><td>"+arr[(Darr[i][1])][7]+"</td><td>etc</td></tr>";
+                }
+            }
+        }
+
+
+    </script>
 
 </body>
 </html>
