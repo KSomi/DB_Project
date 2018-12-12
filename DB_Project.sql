@@ -139,7 +139,7 @@ CREATE TABLE `REQUEST` (
   `Pro_js` int(3),
   `Pro_p` int(3),
   `Pro_e` int(3),
-  `Minimum_career` text,
+  `Minimum_career` int(3),
   `Min_num_person` int(5),
   `Max_num_person` int(5),
   `Accepted` varchar(30),
