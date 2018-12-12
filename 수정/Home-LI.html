@@ -1,0 +1,205 @@
+<?php
+$action = isset($_GET['action']) ? strtolower($_GET['action']) : '';
+
+switch ($action)
+{
+	case 'phpinfo':
+		phpinfo();
+		exit;
+		break;	
+}
+
+header("Content-type: text/html; charset=utf-8");
+
+          include "dbConnect.php";
+          include "session.php";
+
+          $user_id = $_SESSION['user_id'];
+          $user_type = $_SESSION['user_type'];
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8" http-equiv="encoding">
+    <title>DBProject</title>
+    
+    <script src="../dist/moment.min.js"></script>
+    <script src="../dist/jquery.min.js"></script>
+    <script src="../dist/jquery.daterangepicker.min.js"></script>
+    <script src="../dist/jquery.csv.js"></script>
+
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+
+    td, th {
+        border: 1px solid #1E3D6B;
+        font-size: 14px;
+        text-align: left;
+        padding: 8px;
+    }
+
+    </style>
+    <script type="text/javascript">
+        var User_Type;
+        var User_id;
+        function Mypage(){
+            // 관리자, 프리랜서, 의뢰자에 따라
+            // _admin, _FL, _CL
+            User_id = "<?php echo $user_id ?>";
+            User_Type = "<?php echo $user_type ?>";
+            
+            if(User_Type == "FL"){
+                window.location.href = 'MyPage_FL.html';
+            } else if(User_Type == "CL"){
+                window.location.href = 'MyPage_CL.html';
+            } else if(User_Type == "AD"){
+                window.location.href = 'MyPage_AD.html';
+            }
+        }
+      
+        function moreRQ(){
+            window.location.href = 'RequestList.html';
+        }
+        
+        function moreFB(){
+            window.location.href = 'FreeBoard.html';
+        }
+        function moreFAQ(){
+            window.location.href = 'FAQ.html';
+        }
+    </script>
+</head>
+
+<body>
+    
+    
+    
+<div class="page-holder">
+    
+    
+    <div class="navigation-holder">
+       <a href ="Home-LI.html" id="logo"></a>
+        <div class="menuB">
+            <button class="button" id="mypage" onclick="Mypage()">마이페이지</button>
+            <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+            <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+            <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+            <br>
+        </div>
+        
+        
+	<div class="box">
+		<b class="txtBlue"> 공지 사항 </b>: 윽
+                
+		
+	</div>
+    </div>
+    <div class="info-holder">
+        <div class="hd"><br>내 정보</div><br>
+        <div class="ct">
+            &nbsp;알림: &nbsp;&nbsp;<a href="alarm.html">0건</a>
+            <br><br>
+            &nbsp;현재 진행중인 프로젝트: &nbsp;&nbsp;<a href="RequestING.html">0건</a>
+            <br><br>
+            &nbsp;완료한 프로젝트: &nbsp;&nbsp;<a href="finishedP.html">0건</a>
+            <br><br>
+        </div>
+    </div>
+        
+    <div class="body-holder">
+
+        <div class="RQlist">
+            <div class='hd'>의뢰 목록</div>
+            <br>
+            
+            <table class="table">
+                <tr>
+                    <th>프로젝트</th>
+                    <th>개발 금액</th>
+                    <th>언어 종류</th>
+                    <th>경력</th>
+                    <th>시작일</th>
+                </tr>
+                <tr>
+                    <td><a href="view.php?">example project</a></td>
+                    <td>금액_ex</td>
+                    <td>언어_ex</td>
+                    <td>경력_ex</td>
+                    <td>시작일_ex</td>
+                </tr>
+                
+                <tr>
+                    <td><a href="view.php?">example project</a></td>
+                    <td>금액_ex</td>
+                    <td>언어_ex</td>
+                    <td>경력_ex</td>
+                    <td>시작일_ex</td>
+                </tr>
+                
+                <tr>
+                    <td><a href="view.php?">example project</a></td>
+                    <td>금액_ex</td>
+                    <td>언어_ex</td>
+                    <td>경력_ex</td>
+                    <td>시작일_ex</td>
+                </tr>
+            </table>   
+            <br>
+            
+            <button class="fit" id="more" onclick= "moreRQ()">더보기▷</button>
+            <br>
+         
+        </div>
+        <div class="row">
+            
+            <div class="RQlist">
+                <div class="hd">자유게시판</div>
+                <br>
+                
+                <table class="table">
+                
+                <tr>
+                    <td><a href="view.php?">제목</a></td>
+                </tr>
+                <tr>
+                    <td><a href="view.php?">제목_2</a></td>
+                </tr>
+                </table><br>
+                <button class="fit" id="more" onclick= "moreFB()">더보기▷</button>
+                <br>
+                
+            </div>
+        
+            <div class="RQlist">
+                <div class="hd">FAQ</div>
+                <br>
+                <table class="table">
+                
+                <tr>
+                    <td><a href="view.php?">제목</a></td>
+                </tr>
+                <tr>
+                    <td><a href="view.php?">제목_2</a></td>
+                </tr>
+                </table><br>
+                <button class="fit" id="more" onclick= "moreFAQ()">더보기▷</button>
+                <br>
+            </div>
+            
+        </div>
+        
+
+    </div>
+</div>
+    
+    
+</body>
+</html>

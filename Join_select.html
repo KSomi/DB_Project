@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+    
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>Join</title>
+        
+	<style type="text/css">
+            .page-holder{
+                width: 830px;
+                margin: 0 auto;
+            }
+            
+            .Join{
+                
+                width: 400px;
+                border:2px solid #767E8C;
+                border-radius: 8px;
+                padding:5px;
+		margin-top:80px;
+		margin-left: 215px;
+		font-size:11px;
+		font-family:tahoma,verdana,dotum,gulim;
+		line-height:150%;
+		color:#3f3f3f;
+            }
+            .Join .hd{
+                margin: 10px 10px;
+                font-size: 15px;
+                text-align: center;
+            }
+            .Join .row{
+                display: flex;
+                margin: 5px 0;
+            }
+            
+            .Join .row .BT{
+                border: 2px solid #e7e7e7;
+                text-align: center;
+                background-color: white;
+                margin: 10px 30px;
+                width: 150px;
+                height: 30px;
+                border-radius: 8px;
+                transition-duration: 0.4s;
+                -webkit-transition-duration: 0.4s;
+            }
+            
+            .Join .row .BT:hover{
+                background-color: #e7e7e7;
+            }
+        
+        
+        </style>
+        
+        <script type="text/javascript">
+        
+            function Join_FL(){
+                window.location.href = "Join_FL.html";
+            }
+            function Join_CL(){
+                window.location.href = "Join_CL.html";
+            }
+            
+        </script>
+        
+    </head>
+    
+    <body>
+
+        <div class="page-holder">
+            <div class="Join">
+                <div class="hd"><가입 유형></div>
+                <div class="row">
+  
+                    <button class="BT" id="JoinFL" onclick="Join_FL()">개발자</button>
+                    <button class="BT" id="JoinCL" onclick="Join_CL()">의뢰인</button>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+       
+    </body>
+    
+</html>

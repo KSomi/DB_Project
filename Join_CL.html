@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>Join</title>
+
+        <link href="MyPage.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript">
+            function store(){
+                // DB에 정보 저장 - CL
+                window.location.href = 'Home.html';
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div class ="page-holder">
+            <a id="logo"></a>
+            <div class= "head">- 회원가입</div>
+            <div class="row">
+            <form method='post' action = 'Join_CL.php'>
+              <div class ="info-holder">
+                  <div class ="menu">정보 기입</div>
+                  <div class ="row">
+                      <div class="label">ID</div>
+                      <input class="fit" id="ID" name="member_id" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">Password</div>
+                      <input class="fit" type="password" id="PW" name="member_pw" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">이름</div>
+                      <input class="fit" id="name" name="member_name" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">핸드폰 번호</div>
+                      <input class="fit" id="HP" name="member_hp" required>
+                  </div>
+
+                  <br>
+                  <div class="row">
+                    <input type="submit" value="가입" class="savebtn">
+                      <!--<button class="savebtn" id="store" onclick="store()">가입</button> -->
+                  </div>
+              </div>
+            </form>
+            </div>
+
+        </div>
+    </body>
+
+</html>

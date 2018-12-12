@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>Request.</title>
+
+        <link href="MyPage.css" rel="stylesheet" type="text/css" />
+        <link href="../dist/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+
+
+        <script type="text/javascript">
+           $(document).ready(() => {
+                $('#date').dateRangePicker();
+           });
+           function makeRQ(){
+
+           }
+
+           function Changed(a) {
+               var txtExist = a.form.elements["PL_txt"];
+               if (txtExist) {
+                   txtExist.style.display = (a.value == "") ? "" : "none";
+                   if (a.value == "")
+                       txtExist.focus();
+               }
+           }
+           function FormSubmit(formExist) {
+               var HDExist = formExist.elements["PL"];
+               var PLExist = formExist.elements["PL_type"];
+               var txtExist = formExist.elements["PL_txt"];
+               if (HDExist && PLExist && txtExist)
+                   HDExist.value = (PLExist.value == "") ? txtExist.value : PLExist.value;
+           }
+        </script>
+        <?
+          include "dbConnect.php";
+          include "session.php";
+
+          $user_id = $_SESSION['user_id'];
+        ?>
+
+    </head>
+
+    <body>
+        <div class ="page-holder">
+            <a href ="Home-LI.html" id="logo"></a>
+
+            <div class="navigation-holder">
+
+                <div class="menuB">
+                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
+                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+                    <br>
+                </div>
+
+            </div>
+
+            <div class= "head">- My Page (Client)</div>
+
+
+            <div class ="info-holder">
+                <div class ="menu">의뢰 신청</div>
+
+                <div class ="row">
+                    <div class ="label">의뢰 금액:</div>
+                    <input class="fit" id="prof">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">시작/종료일:</div>
+                    <input class="fit" id="date">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">최소 경력 (0~):</div>
+                    <input class="fit" id="career">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">언어 종류:</div>
+                    <form name="PLForm" onsubmit="FormSubmit(this);">
+                        <input type="hidden" name="PL"/>
+                        <select name="PL_type" onchange="Changed(this);">
+                            <option disabled selected value> -- select a langauge type -- </option>
+                            <option value="C/C++">C/C++</option>
+                            <option value="Java">Java</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Python">Python</option>
+                            <option value="">etc</option>
+                            <option value="무관">무관</option>
+                        </select> <input type="text" name="PL_txt" style="display: none;"/>
+                        <button type="submit" hidden="" ></button>
+
+                    </form>
+                </div>
+
+                <div class ="row">
+                    <div class ="label">언어 능숙도:</div>
+                    <input class="fit" id="PL_Prof">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">최소/최대 인원:</div>
+                    <input class="fit" id="minmaxP">
+                </div>
+
+                <div class ="row">
+                    <form action=".php">
+                         &nbsp Select a file: <br>&nbsp<input type="file" name="RQfile" id="RQfile"><br><br>
+                        &nbsp<input type="submit" value="파일 등록">
+                    </form>
+                </div>
+
+                <br>
+                <div class="row">
+                    <button class="savebtn" id="store" onclick="makeRQ()">의뢰 신청</button>
+                </div>
+            </div>
+
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>Team Making.</title>
+
+        <link href="MyPage.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript">
+           function makeTeam(){
+
+           }
+        </script>
+
+    </head>
+
+    <body>
+        <div class ="page-holder">
+            <a href ="Home-LI.html" id="logo"></a>
+
+            <div class="navigation-holder">
+
+                <div class="menuB">
+                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
+                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+                    <br>
+                </div>
+
+            </div>
+
+            <div class= "head">- My Page (Freelancer)</div>
+
+            <form method='post' action = 'makeTeam.php' id="frm">
+            <div class ="info-holder">
+                <div class ="menu">팀 정보</div>
+
+                <div class ="row">
+                    <div class ="label">팀 이름:</div>
+                    <input class="fit" id="prof" name="prof">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">팀장 ID:</div>
+                    <input class="fit" id="LeaderID" name="leaderid">
+                </div>
+
+                <div class ="row">
+                    <div class ="label">팀원 ID:</div>
+                    <input class="fit" id="teammateID" name="teammateid">
+                </div>
+
+                <br>
+                <div class="row">
+                    <button class="savebtn" id="store" onclick="makeTeam()">팀 생성</button>
+                </div>
+            </div>
+            </form>
+
+
+        </div>
+    </body>
+</html>

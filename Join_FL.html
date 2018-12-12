@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>Join</title>
+
+        <link href="MyPage.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript">
+            var ProfInfo;
+            var Pinfo;  //  데이터 전송용
+            var Ptxt = [];
+            var Ptxt2 = []; //  데이터 전송용
+            var count = 0;
+
+            function store(){
+                // DB에 정보 저장 - FL
+                window.location.href = 'Home.html';
+            }
+
+            function addProf(){
+                var PL_type = $("input[name=PL]:checked").val();
+                if (PL_type == "") {
+                    PL_type = document.getElementById('PL_etc').value;
+                } else {
+                    PL_type = $("input[name=PL]:checked").val();
+                }
+                PL_score = document.getElementById('score').value;
+                Ptxt[count] = PL_type+": "+PL_score;
+                Ptxt2[count] = PL_type+":"+PL_score;
+           //     console.log(Ptxt);
+                if (count == 0){
+                    ProfInfo = (count + 1)+". "+Ptxt[0];
+                    Pinfo = Ptxt2[0];
+                } else {
+                    ProfInfo = ProfInfo + "<br>" + (count + 1) + ". " + Ptxt[count];
+                    Pinfo = Pinfo + Ptxt2[count] + ",";
+                }
+                document.getElementById('Proftxt').innerHTML = ProfInfo;
+                document.getElementById('PL_txt').value = Pinfo;
+                count++;
+            }
+
+            function delProf(){
+              count = 0;
+              Ptxt = [];
+              Ptxt2 = [];
+              ProfInfo = "";
+              Pinfo = "";
+              document.getElementById('Proftxt').innerHTML = ProfInfo;
+              document.getElementById('PL_txt').value = Pinfo;
+
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <div class ="page-holder">
+            <a id="logo"></a>
+            <div class= "head">- 회원가입</div>
+            <div class="row">
+            <form method='post' action = 'Join_FL.php' id="frm">
+              <div class ="info-holder">
+                  <div class ="menu">정보 기입</div>
+                  <div class ="row">
+                      <div class="label">ID</div>
+                      <input class="fit" id="ID" name="member_id" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">Password</div>
+                      <input class="fit" type="password" id="PW" name="member_pw" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">이름</div>
+                      <input class="fit" id="name" name="member_name" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">핸드폰 번호</div>
+                      <input class="fit" id="HP" name="member_hp" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">나이</div>
+                      <input class="fit" id="age" name="member_age" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">개발 경력</div>
+                      <input class="fit" id="career" name="member_career" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">전공 학과</div>
+                      <input class="fit" id="major" name="member_major" required>
+                  </div>
+                  <div class ="row">
+                      <div class="label">능숙도</div>
+
+                      <div name="ProfForm" oninput="Prof.value=PL_etc.value +': '+ score.value">
+                          <div class="label">-언어 (종류)</div>
+
+                          <input type="radio" name="PL" id="PL_C" value="C/C++" checked> C/C++ <br>
+                          <input type="radio" name="PL" id="PL_J" value="Java"> Java <br>
+                          <input type="radio" name="PL" id="PL_JS" value="JavaScript"> JavaScript <br>
+                          <input type="radio" name="PL" id="PL_P" value="Python"> Python <br>
+                          <input type="radio" name="PL" id="PL_e" value=""> etc <br>
+                          <input type="text" name ="PL_etc" id="PL_etc" value=""><br>
+                          <br>
+                          <div class="label">-능숙도 (1~5)</div>
+
+                          <input type="range" max="5" min="1" id="score" value ="1">
+
+                          <br>
+                          <b id="Prof"></b>
+
+                      </div>
+
+                      <button type="button" class="savebtn" onclick ="addProf()">추가</button>
+                      <button type="button" class="savebtn" onclick ="delProf()">삭제</button>
+
+                  </div>
+
+                  <div class="row">
+                          <div id="Proftxt" value=""></div>
+                  </div>
+                  <br>
+                  <input type="hidden" name="member_pl" id="PL_txt" value="">
+                  <div class="row">
+                    <input type="submit" value="가입" class="savebtn">
+                  </div>
+              </div>
+            </form>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

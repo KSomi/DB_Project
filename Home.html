@@ -1,0 +1,70 @@
+<?php
+$action = isset($_GET['action']) ? strtolower($_GET['action']) : '';
+
+switch ($action)
+{
+	case 'phpinfo':
+		phpinfo();
+		exit;
+		break;	
+}
+
+header("Content-type: text/html; charset=utf-8");
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8" http-equiv="encoding">
+    <title>DBProject</title>
+    
+    <script src="../dist/moment.min.js"></script>
+    <script src="../dist/jquery.min.js"></script>
+    <script src="../dist/jquery.daterangepicker.min.js"></script>
+    <script src="../dist/jquery.csv.js"></script>
+
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript">
+        function Login(){
+            window.location.href = 'LogIn.html';
+        }
+        function moreRQ(){
+            window.location.href = 'RequestList.html';
+        }
+        
+        function moreFB(){
+            window.location.href = 'FreeBoard.html';
+        }
+        function moreFAQ(){
+            window.location.href = 'FAQ.html';
+        }
+    </script>
+</head>
+
+<body>
+    
+    
+    
+<div class="page-holder">
+    <div class="navigation-holder">
+        
+        <a id="logo"></a>        
+        
+        <div class="menuB">
+            <button class="button" id="Login" onclick="Login()">로그인/회원가입</button>
+            <button class="button" id="anotherM" onclick="Login()">의뢰 목록</button>
+            <button class="button" id="anotherM" onclick="Login()">자유게시판</button>
+            <button class="button" id="anotherM" onclick="Login()">FAQ</button>
+            <br>
+        </div>
+
+    </div>
+    <div class="main"></div>
+</div>
+    
+    
+</body>
+</html>

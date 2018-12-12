@@ -1,0 +1,117 @@
+<!--<?php
+        $connect = mysqli_connect("root", "localhost", "root");
+        mysqli_select_db("MyProj", $connect);
+?>
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta charset="utf-8" http-equiv="encoding">
+
+        <!--<script src="node.js"></script>-->
+        <script src="../dist/moment.min.js"></script>
+        <script src="../dist/jquery.min.js"></script>
+        <script src="../dist/jquery.daterangepicker.min.js"></script>
+        <script src="../dist/jquery.csv.js"></script>
+        <title>LogIn</title>
+
+	<style type="text/css">
+            .page-holder{
+                width: 830px;
+                margin: 0 auto;
+            }
+
+            .LogIn{
+
+                width: 400px;
+                border:2px solid #767E8C;
+                border-radius: 8px;
+                padding:5px;
+		margin-top:80px;
+		margin-left: 215px;
+		font-size:11px;
+		font-family:tahoma,verdana,dotum,gulim;
+		line-height:150%;
+		color:#3f3f3f;
+            }
+
+            .LogIn .row{
+                display: flex;
+                margin: 5px 0;
+            }
+
+            .LogIn .row .label{
+                width: 100px;
+                flex-shrink: 0;
+                font-size: 15px;
+            }
+
+            .LogIn .row .fit{
+                flex: 1 1 auto;
+                margin-right: 5px;
+                min-width: 0;
+            }
+
+            .LogIn .row .BT{
+                border: 2px solid #e7e7e7;
+                text-align: center;
+                background-color: white;
+                margin: 10px 30px;
+                width: 150px;
+                height: 30px;
+                border-radius: 8px;
+                transition-duration: 0.4s;
+                -webkit-transition-duration: 0.4s;
+            }
+
+            .LogIn .row .BT:hover{
+                background-color: #e7e7e7;
+            }
+
+
+        </style>
+
+        <script type="text/javascript">
+            function join(){
+                window.location.href = "Join_select.html";
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+<!--        <?php
+        $sqlrec = 'SELECT * from account';
+        $info = mysqli_query($sqlrec, $connect);
+        mysqli_close($connect); ?>-->
+
+        <div class="page-holder">
+          <form method='post' action = 'Login.php'>
+            <div class="LogIn">
+                <div class="row">
+                    <div class="label">ID</div>
+                    <input class="fit" id="ID" name="user_id" required>
+                </div>
+
+                <div class="row">
+                    <div class="label">Password</div>
+                    <input class="fit" type="password" id="PW" name="user_pw" required>
+                </div>
+
+                <div class="row">
+
+                    <input type="submit" value="로그인" class="BT">
+                    <button class="BT" id="Join" type="button" onclick="join()">회원가입</button>
+
+                </div>
+
+            </div>
+          </form>
+
+        </div>
+
+    </body>
+
+</html>

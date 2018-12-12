@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta charset="utf-8" http-equiv="encoding">
+    <title>DBProject</title>
+    
+    <script src="../dist/moment.min.js"></script>
+    <script src="../dist/jquery.min.js"></script>
+    <script src="../dist/jquery.daterangepicker.min.js"></script>
+    <script src="../dist/jquery.csv.js"></script>
+
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+
+    td {
+        border-bottom: 1px solid gray;
+        border-top: 1px solid gray;
+        text-align: left;
+        padding: 8px;
+    }
+
+    </style>
+    <script type="text/javascript">
+        function Mypage(){
+            window.location.href = 'MyPage_CL.html';
+        }
+        
+        function moreRQ(){
+            window.location.href = 'RequestList.html';
+        }
+        
+        function moreFB(){
+            window.location.href = 'FreeBoard.html';
+        }
+        
+        function page(){
+            
+        }
+       
+        function FAQ(){
+            window.location.href = 'FAQ.html';
+        }
+        
+        function write(){
+            
+        }
+        
+    </script>
+    
+</head>
+<body>
+    
+        
+<div class="page-holder">
+    <div class="navigation-holder">
+        
+        <a href ="Home-LI.html" id="logo"></a>
+        <div class="menuB">
+            <button class="button" id="mypage" onclick="Mypage()">마이페이지</button>
+            <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+            <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+            <button class="button" id="anotherM" onclick="FAQ()">FAQ</button>
+        </div>
+        
+	<div class="box">
+		<b class="txtBlue"> 공지 사항 </b><br/>
+                
+		
+	</div>
+    </div>
+        
+    <div class="info-holder">
+        <div class="hd"><br>내 정보</div><br>
+        <div class="ct">
+            &nbsp;알림: &nbsp;&nbsp;<a href="">0건</a>
+            <br><br>
+            &nbsp;현재 진행중인 프로젝트: &nbsp;&nbsp;<a href="RequestING.html">0건</a>
+            <br><br>
+            &nbsp;완료한 프로젝트: &nbsp;&nbsp;<a href="">0건</a>
+            <br><br>
+        </div>
+    </div>
+    
+    <div class="body-holder">
+        
+
+        <div class="RQlist">
+            <div class= "hd">FAQ</div>
+            <br>
+            
+            <table class="table">
+                
+                <tr>
+                    <td><a href="view.php?">example______ㅁㅁ____</a></td>
+                    <td>올린 날짜</td>
+                    <td>글쓴이</td>
+                </tr>
+            </table>
+            
+            <div class="row">
+                <!-- 의뢰 목록 읽어오는 거에 따라 수정-->
+                <button class="btnNum" id="1_pg" onclick="page()">1</button>
+                <button class="btnNum" id="2_pg" onclick="page()">2</button>
+                <button class="btnNum" id="3_pg" onclick="page()">3</button>
+                <button class="btnNum" id="4_pg" onclick="page()">4</button>
+                <button class="btnNum" id="5_pg" onclick="page()">5</button>
+                <br/><br>
+            </div>
+            <div class="ct">
+                <button class="sortbtn" id="write" onclick="write()">글쓰기</button><br><br>
+            </div>
+            
+            
+         
+        </div>
+
+    </div>
+</div>
+    
+</body>
+</html>
