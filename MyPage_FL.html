@@ -3,37 +3,69 @@
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta charset="utf-8" http-equiv="encoding">
-    
+
         <!--<script src="node.js"></script>-->
         <script src="../dist/moment.min.js"></script>
         <script src="../dist/jquery.min.js"></script>
         <script src="../dist/jquery.daterangepicker.min.js"></script>
         <script src="../dist/jquery.csv.js"></script>
         <title>My Page</title>
-        
+
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
-        
+
         <script type="text/javascript">
-            
+            function Mypage(){
+            // 관리자, 프리랜서, 의뢰자에 따라
+            // _admin, _FL, _CL
+                if($_SESSION['user_type'] == "CL")
+                {
+                    window.location.href = 'MyPage_CL.html';
+                }
+                if($_SESSION['user_type'] == "FL")
+                {
+                    window.location.href = 'MyPage_FL.html';
+                }
+
+
+            }
+
+            function moreRQ(){
+                window.location.href = 'RequestList.html';
+            }
+
+            function moreFB(){
+                window.location.href = 'FreeBoard.html';
+            }
+            function moreFAQ(){
+                window.location.href = 'FAQ.html';
+            }
         </script>
-        <script>
-        $(function(){
-            $("#includedContent").load("menubar_MP.html");
-        });
-        </script>
+
     </head>
-    
+
     <body>
         <div class ="page-holder">
-            <div id="includedContent"></div>
-            
+            <a href ="Home-LI.html" id="logo"></a>
+
+            <div class="navigation-holder">
+
+                <div class="menuB">
+                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
+                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+                    <br>
+                </div>
+
+            </div>
+
             <div class= "head">- My Page (Freelancer)</div>
             <div class ="row">
                 <div class ="info-holder">
                     <div class ="menu">내 정보</div>
                     <ul>
                         <li><a href="BasicInfo_FL.html">기본 정보</a></li>
-                        
+
                     </ul>
                 </div>
                 <div class ="info-holder">
@@ -44,17 +76,17 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class ="row">
-            
+
                 <div class ="info-holder">
                     <div class ="menu">내 의뢰</div>
                     <ul>
                         <li><a href="RequestING.html">수행중인 의뢰</a></li>
-                        <li><a href="RequestAvailable.html">신청 가능 의뢰</a></li>
+                        <li><a href="RequestList.html">신청 가능 의뢰</a></li>
                     </ul>
                 </div>
-                
+
                 <div class ="info-holder">
                     <div class ="menu">내 팀</div>
                     <ul>
@@ -71,11 +103,11 @@
                         <li><a href="makeTeam.html">팀 만들기</a></li>
                     </ul>
                 </div>
-                
+
             </div>
-            
-            
+
+
         </div>
     </body>
-    
+
 </html>
