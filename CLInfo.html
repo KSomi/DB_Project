@@ -1,3 +1,8 @@
+<?php
+include "adminInfo.php";
+include "session.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,11 +18,10 @@
         
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
         
-        <script type="text/javascript"></script>
         <script>
-            $(function(){
-                $("#includedContent").load("menubar.html");
-            });
+        $(function(){
+            $("#includedContent").load("menubar_MP.html");
+        });
         </script>
         
     </head>
@@ -25,15 +29,26 @@
     <body>
         <div class ="page-holder">
             <div id="includedContent"></div>
+            
             <div class= "head">- Admin Page</div>
             
             
             <div class ="info-holder">
                 <div class ="menu">클라이언트 목록</div>
+                <p id='CLlist'></p>
+                
                 
             </div>
             
             
         </div>
+        <script type="text/javascript">
+            var rarr = <?php echo json_encode($rowCL) ?>;
+            
+            var s = "";
+            for(var i = 0; i <rarr.length; i++){
+                document.getElementById("CLlist").innerHTML += "&nbsp"+(i+1)+":  "+"<a href=''>"+rarr[i]+"<br>"+"</a>";
+            }
+        </script>
     </body>
 </html>
