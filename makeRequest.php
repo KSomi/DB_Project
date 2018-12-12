@@ -20,8 +20,6 @@ $e = $_POST['e'];
 $target_dir = "requestfiles/";
 $target_file = $target_dir . basename($_FILES["RQfile"]["name"]);
 
-chmod("requestfiles", 0777);
-
 move_uploaded_file($_FILES["RQfile"]["tmp_name"], $target_file);
 
 $sql = "INSERT INTO request(C_id, Budget, Start_date, End_date, Pro_c, Pro_j, Pro_js, Pro_p, Pro_e, Minimum_career, Min_num_person, Max_num_person)
