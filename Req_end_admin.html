@@ -1,3 +1,8 @@
+<?php
+include "adminInfo.php";
+include "session.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,17 +30,32 @@
     
     <body>
         <div class ="page-holder">
-           <div id="includedContent"></div>
+            <div id="includedContent"></div>
             
             <div class= "head">- Admin Page</div>
             
             
             <div class ="info-holder">
                 <div class ="menu">종료된 의뢰 목록</div>
+                <p id='RTlist'></p>
                 
+                </div>
+            
+            
             </div>
+
+
+        <script type="text/javascript">
+            if(<?=$countRT?> != 0){
+                var rarr = <?php echo json_encode($rowRT) ?>;
+                
+                var s = "";
+                for(var i = 0; i <rarr.length; i++){
+                    document.getElementById("RTlist").innerHTML += "&nbsp"+(i+1)+":  "+rarr[i]+"<br>";
+                }
+               
+            }
             
-            
-        </div>
+        </script>
     </body>
 </html>

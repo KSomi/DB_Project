@@ -7,7 +7,7 @@ $member_name = $_POST['member_name'];
 $member_hp = $_POST['member_hp'];
 
 
-$sql = "UPDATE freelancer
+$sql = "UPDATE client
 SET Name = '$member_name', Phone = '$member_hp'
 WHERE ID = '$member_id'";
 $info = mysqli_query($dbConnect, $sql);

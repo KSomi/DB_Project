@@ -27,5 +27,21 @@
 	  {
 		  $rowT[$countT++] = $row[0];
 	  }
+
+	  $sqlRC = "SELECT NUM FROM request WHERE Complete = 1";
+	  $resRC = mysqli_query($dbConnect, $sqlRC);
+	  $countRC = 0;
+	  while($row = mysqli_fetch_array($resRC))
+	  {
+		  $rowRC[$countRC++] = $row[0];
+	  }
+
+	  $sqlRT = "SELECT NUM FROM request WHERE Complete = 2";
+	  $resRT = mysqli_query($dbConnect, $sqlRT);
+	  $countRT = 0;
+	  while($row = mysqli_fetch_array($resRT))
+	  {
+		  $rowRT[$countRT++] = $row[0];
+	  }
          
 ?>

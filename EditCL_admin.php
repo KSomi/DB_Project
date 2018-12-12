@@ -43,7 +43,7 @@
             <div id="includedContent"></div>
             <div class= "head">- My Page</div>
 
-            <form method='post' action = 'edit_FL.php' id="frm">
+            <form method='post' action = 'editCL_ad.php' id="frm">
             <div class ="info-holder">
                 <div class ="menu">기본 정보</div>
                 <div class ="row">

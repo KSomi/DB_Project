@@ -146,6 +146,11 @@ if($pass == 1)
   $sql = "INSERT INTO team(Name,Leader) VALUES('{$prof}','{$leaderid}')";
   $dbConnect->query($sql);
 }
+if($leader == 1 && $pass == 1)
+{
+  $sql = "INSERT INTO teammate(Teamname,Teammate) VALUES('{$prof}','{$leaderid}')";
+  $dbConnect->query($sql);
+}
 if($a1 == 1 && $pass == 1)
 {
   $sql = "INSERT INTO teammate(Teamname,Teammate) VALUES('{$prof}','{$teammateid1}')";
