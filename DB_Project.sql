@@ -144,6 +144,7 @@ CREATE TABLE `REQUEST` (
   `Accepted` varchar(30),
   `Accept_f` varchar(30),
   `Accept_t` varchar(30),
+  `Complete` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`NUM`),
 
   CONSTRAINT client_id
@@ -230,19 +231,6 @@ CREATE TABLE `MESSAGE` (
 --
 -- Definition of table `PROFICIENCY`
 --
-
-DROP TABLE IF EXISTS `PROFICIENCY`;
-CREATE TABLE `PROFICIENCY` (
-  `ID` varchar(30) NOT NULL,
-  `Language` varchar(30) NOT NULL,
-  `Score` int(5) NOT NULL,
-  PRIMARY KEY (`ID`),
-
-  CONSTRAINT profid
-  FOREIGN KEY (`ID`) REFERENCES `FREELANCER`(`ID`)
-    ON DELETE CASCADE  ON UPDATE CASCADE
-
-) DEFAULT CHARSET=utf8;
 
 
 --

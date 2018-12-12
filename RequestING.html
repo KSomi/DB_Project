@@ -50,6 +50,11 @@
                 <div class ="menu">수행 중인 의뢰</div>
                 <div id="req">    </div>
                 <div > 번 의뢰   </div>
+                <br>
+                <form method='post' action = 'complete.php'>
+                  <input type="hidden" id="req_num" name="req_num" value="">
+                  <input type="submit" value="완료">
+                </form>
             </div>
 
 
@@ -63,6 +68,7 @@
         $num = $row['NUM'];
 
         echo "<script>document.getElementById('req').innerHTML = \"$num\"</script>";
+        echo "<script>document.getElementById('req_num').value = \"$num\"</script>";
         ?>
     </body>
 </html>
