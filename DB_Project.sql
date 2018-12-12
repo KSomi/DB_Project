@@ -56,6 +56,7 @@ CREATE TABLE `FREELANCER` (
   `Major` text,
   `Career` int(3),
   `F_request_list` text,
+  `exp` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) DEFAULT CHARSET=utf8;
 
