@@ -53,6 +53,13 @@
                 <br>
                 <div id="free">    </div>
                 <div > 작업   </div>
+                <br>
+                <div id="acce">   </div>
+                <form method='post' action='completecl.php'>
+                  <div id="ok" style="display:none">
+                    <input type="hidden" id="req_num" name="req_num"><input type="submit" value="완료">
+                  </div>
+                </form>
             </div>
 
 
@@ -60,14 +67,30 @@
 
 
         <?
-        $sql = "SELECT * FROM request WHERE Accepted='{$user_id}'";
+        $sql = "SELECT * FROM request WHERE C_id='{$user_id}'";
         $res = $dbConnect->query($sql);
         $row = mysqli_fetch_array($res);
+
         $num = $row['NUM'];
         $free = $row['Accepted'];
+        $acc = $row['Complete'];
 
         echo "<script>document.getElementById('req').innerHTML = \"$num\"</script>";
         echo "<script>document.getElementById('free').innerHTML = \"$free\"</script>";
+        if($acc == 0)
+        {
+         echo "<script>document.getElementById('acce').innerHTML = \"의뢰 진행중\"</script>";
+        }
+        if($acc == 1)
+        {
+         echo "<script>document.getElementById('acce').innerHTML = \"완료 승인 대기중\"</script>";
+         echo "<script>document.getElementById('ok').style.display = \"\" </script>";
+         echo "<script>document.getElementById('req_num').value = $num </script>";
+        }
+        if($acc == 2)
+        {
+         echo "<script>document.getElementById('acce').innerHTML = \"의뢰 완료\"</script>";
+        }
         ?>
     </body>
 </html>
