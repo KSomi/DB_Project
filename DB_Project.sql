@@ -55,11 +55,26 @@ CREATE TABLE `FREELANCER` (
   `Age` int(3),
   `Major` text,
   `Career` int(3),
-  `Proficiency` text,
   `F_request_list` text,
   PRIMARY KEY (`ID`)
 ) DEFAULT CHARSET=utf8;
 
+
+
+DROP TABLE IF EXISTS `PROFICIENCY`;
+CREATE TABLE `PROFICIENCY` (
+  `ID` varchar(30) NOT NULL,
+  `Pro_c` int(10),
+  `Pro_j` int(10),
+  `Pro_js` int(10),
+  `Pro_p` int(10),
+  `Pro_e` int(10),
+
+  CONSTRAINT freelancerid
+  FOREIGN KEY (`ID`) REFERENCES `FREELANCER`(`ID`)
+    ON DELETE CASCADE  ON UPDATE CASCADE
+
+) DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `FREELANCER`

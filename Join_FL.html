@@ -36,6 +36,13 @@
                 Ptxt[count] = PL_type+": "+PL_score;
                 Ptxt2[count] = PL_type+":"+PL_score;
            //     console.log(Ptxt);
+
+                if(PL_type=="C/C++"){document.getElementById("c").value = PL_score;}
+                if(PL_type=="Java"){document.getElementById("j").value = PL_score;}
+                if(PL_type=="JavaScript"){document.getElementById("js").value = PL_score;}
+                if(PL_type=="Python"){document.getElementById("p").value = PL_score;}
+                if(PL_type==document.getElementById('PL_etc').value){document.getElementById("e").value = PL_score;}
+
                 if (count == 0){
                     ProfInfo = (count + 1)+". "+Ptxt[0];
                     Pinfo = Ptxt2[0];
@@ -68,6 +75,12 @@
             <div class= "head">- 회원가입</div>
             <div class="row">
             <form method='post' action = 'Join_FL.php' id="frm">
+              <input type="hidden" name="c" id="c" value="0">
+              <input type="hidden" name="j" id="j" value="0">
+              <input type="hidden" name="js" id="js" value="0">
+              <input type="hidden" name="p" id="p" value="0">
+              <input type="hidden" name="e" id="e" value="0">
+
               <div class ="info-holder">
                   <div class ="menu">정보 기입</div>
                   <div class ="row">
