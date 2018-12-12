@@ -185,7 +185,7 @@ $js = $row['Pro_js'];
 $p = $row['Pro_p'];
 $e = $row['Pro_e'];
 
-$sql = "SELECT * FROM request WHERE Accepted = '0' AND Minimum_career <= '{$user_career}' AND Pro_c <= '{$c}' AND Pro_j <= '{$j}' AND Pro_js <= '{$js}' AND Pro_p <= '{$p}' AND Pro_e <= '{$e}'";
+$sql = "SELECT * FROM request WHERE Complete = '0' AND Accepted = '0' AND Minimum_career <= '{$user_career}' AND Pro_c <= '{$c}' AND Pro_j <= '{$j}' AND Pro_js <= '{$js}' AND Pro_p <= '{$p}' AND Pro_e <= '{$e}'";
 
 $res = $dbConnect->query($sql);
 
