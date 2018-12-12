@@ -4,7 +4,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta charset="utf-8" http-equiv="encoding">
     <title>DBProject</title>
-    
+
     <script src="../dist/moment.min.js"></script>
     <script src="../dist/jquery.min.js"></script>
     <script src="../dist/jquery.daterangepicker.min.js"></script>
@@ -17,7 +17,7 @@
         border-collapse: collapse;
         width: 100%;
     }
-    
+
 
     td, th {
         border: 1px solid gray;
@@ -28,44 +28,86 @@
 
     </style>
     <script type="text/javascript">
-        
+        function Mypage(){
+            window.location.href = 'MyPage_CL.html';
+        }
+
+        function moreRQ(){
+            window.location.href = 'RequestList.html';
+        }
+        function moreFB(){
+            window.location.href = 'FreeBoard.html';
+        }
+        function moreFAQ(){
+            window.location.href = 'FAQ.html';
+        }
         function page(){
-            
+
         }
-        
+
         function datesort(){
-            
+
         }
-        
+
         function paysort(){
-            
+
         }
-        
-        
+
+
     </script>
-    <script>
-        $(function(){
-            $("#includedContent").load("menubar.html");
-        });
-    </script>
-    
+
+    <?
+      include "dbConnect.php";
+      include "session.php";
+
+      $user_id = $_SESSION['user_id'];
+      ?>
+
 </head>
 <body>
-    
-        
+
+
 <div class="page-holder">
-    <div id="includedContent"></div>
-    
-    
+    <div class="navigation-holder">
+
+        <a href ="Home-LI.html" id="logo"></a>
+        <div class="menuB">
+            <button class="button" id="mypage" onclick="Mypage()">마이페이지</button>
+            <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+            <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+            <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+        </div>
+
+	<div class="box">
+		<b class="txtBlue"> 공지 사항 </b><br/>
+
+
+	</div>
+    </div>
+
+    <div class="info-holder">
+        <div class="hd"><br>내 정보</div><br>
+        <div class="ct">
+            &nbsp;알림: &nbsp;&nbsp;<a href="alarm.html">0건</a>
+            <br><br>
+            &nbsp;현재 진행중인 프로젝트: &nbsp;&nbsp;<a href="RequestING.html">0건</a>
+            <br><br>
+            &nbsp;완료한 프로젝트: &nbsp;&nbsp;<a href="finishedP.html">0건</a>
+
+            <br><br>
+        </div>
+    </div>
+
+
     <div class="body-holder">
-        
+
         <div class="RQlist">
             <div class= "hd">의뢰 목록</div>
-            
+
             <div class="ct">
                 <button class="sortbtn" id="datesort" onclick="dateSort()">날짜순 정렬</button>
                 <button class="sortbtn" id="paysort" onclick="paySort()">금액순 정렬</button><br><br>
-                
+
             </div>
             <!--
             <ul>
@@ -74,23 +116,17 @@
                 <li><a href = "">~의뢰 목록~</a></li>
                 <li><a href = "">~의뢰 목록~</a></li>
             </ul>-->
-            <table class="table">
+
+            <table class="table" id = "t_list">
                 <tr>
                     <th>프로젝트</th>
                     <th>개발 금액</th>
-                    <th>언어 종류</th>
-                    <th>경력</th>
                     <th>시작일</th>
-                </tr>
-                <tr>
-                    <td><a href="view.php?">example project</a></td>
-                    <td>ㅇㅇ</td>
-                    <td>ㅇㅇ</td>
-                    <td>ㅇㅇ</td>
-                    <td>ㅇㅇ</td>
+                    <th>경력</th>
+                    <th>언어 종류</th>
                 </tr>
             </table>
-            
+
             <div class="row">
                 <!-- 의뢰 목록 읽어오는 거에 따라 수정-->
                 <button class="btnNum" id="1_pg" onclick="page()">1</button>
@@ -100,13 +136,77 @@
                 <button class="btnNum" id="5_pg" onclick="page()">5</button>
                 <br><br/>
             </div>
-            
-            
-         
+
+
+
         </div>
 
     </div>
 </div>
-    
+
+<script>
+function f(num, bud, c, j,js,p,e,car,day)
+{
+  if(c !=0){document.getElementById('t_list').innerHTML +="<tr><td>"+num+"</td><td>"+bud+"</td><td>"+day+"</td><td>"+car+"</td><td>C/C++</td></tr>"; }
+  if(j !=0){document.getElementById('t_list').innerHTML +="<tr><td>"+num+"</td><td>"+bud+"</td><td>"+day+"</td><td>"+car+"</td><td>Java</td></tr>"; }
+  if(js !=0){document.getElementById('t_list').innerHTML +="<tr><td>"+num+"</td><td>"+bud+"</td><td>"+day+"</td><td>"+car+"</td><td>JavaScript</td></tr>"; }
+  if(p !=0){document.getElementById('t_list').innerHTML +="<tr><td>"+num+"</td><td>"+bud+"</td><td>"+day+"</td><td>"+car+"</td><td>Python</td></tr>"; }
+  if(e !=0){document.getElementById('t_list').innerHTML +="<tr><td>"+num+"</td><td>"+bud+"</td><td>"+day+"</td><td>"+car+"</td><td>etc</td></tr>"; }
+}
+</script>
+
+
+<?
+
+$i = 0;
+
+$sql = "SELECT * FROM freelancer WHERE ID='{$user_id}'";
+$res = $dbConnect->query($sql);
+$row = mysqli_fetch_array($res);
+
+$user_career = $row['Career'];
+
+$sql = "SELECT * FROM proficiency WHERE ID='{$user_id}'";
+$res = $dbConnect->query($sql);
+$row = mysqli_fetch_array($res);
+
+$c = $row['Pro_c'];
+$j = $row['Pro_j'];
+$js = $row['Pro_js'];
+$p = $row['Pro_p'];
+$e = $row['Pro_e'];
+
+$sql = "SELECT * FROM request WHERE Minimum_career <= '{$user_career}' AND Pro_c <= '{$c}' AND Pro_j <= '{$j}' AND Pro_js <= '{$js}' AND Pro_p <= '{$p}' AND Pro_e <= '{$e}'";
+
+$res = $dbConnect->query($sql);
+
+while($row = mysqli_fetch_array($res))
+{
+  $number = $row['NUM'];
+  $budget = $row['Budget'];
+  $req_c = $row['Pro_c'];
+  $req_j = $row['Pro_j'];
+  $req_js = $row['Pro_js'];
+  $req_p = $row['Pro_p'];
+  $req_e = $row['Pro_e'];
+  $req_career = $row['Minimum_career'];
+  $req_day = $row['Start_date'];
+
+
+  echo "<script>    if($req_c !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>C/C++</td></tr>\"; }    if($req_j !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Java</td></tr>\"; }    if($req_js !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>JavaScript</td></tr>\"; }    if($req_p !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Python</td></tr>\"; }    if($req_e !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>etc</td></tr>\"; }    </script>";
+
+    $i = $i + 1;
+}
+
+?>
+
+<script>/*
+if(<?=$req_c?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>C/C++</td></tr>"; }
+if(<?=$req_j?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>Java</td></tr>"; }
+if(<?=$req_js?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>JavaScript</td></tr>;"; }
+if(<?=$req_p?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>Python</td></tr>"; }
+if(<?=$req_e?> !=0){document.getElementById('t_list').innerHTML +="<tr><td><?=$number?></td><td><?=$budget?></td><td><?=$req_day?></td><td><?=$req_career?></td><td>etc</td></tr>"; }*/
+</script>
+
 </body>
 </html>
