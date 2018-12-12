@@ -24,12 +24,9 @@
            }
 
            function Changed(a) {
-               var txtExist = a.form.elements["PL_txt"];
-               if (txtExist) {
-                   txtExist.style.display = (a.value == "") ? "" : "none";
-                   if (a.value == "")
-                       txtExist.focus();
-               }
+               if(a.value == ""){
+                   $("#PL_txt").attr("disabled", false);
+               }  
            }
            function FormSubmit(formExist) {
                var HDExist = formExist.elements["PL"];
@@ -87,20 +84,19 @@
 
                 <div class ="row">
                     <div class ="label">언어 종류:</div>
-                    <form name="PLForm" onsubmit="FormSubmit(this);">
-                        <input type="hidden" name="PL"/>
+                    
+                    <input type="hidden" name="PL"/>
                         <select name="PL_type" onchange="Changed(this);">
                             <option disabled selected value> -- select a langauge type -- </option>
                             <option value="C/C++">C/C++</option>
                             <option value="Java">Java</option>
                             <option value="JavaScript">JavaScript</option>
                             <option value="Python">Python</option>
-                            <option value="">etc</option>
+                            <option id="etc" value="">etc</option>
                             <option value="무관">무관</option>
-                        </select> <input type="text" name="PL_txt" style="display: none;"/>
+                        </select> &nbsp&nbsp<input type="text" id="PL_txt" name="PL_txt" disabled>
                         <button type="submit" hidden="" ></button>
-
-                    </form>
+                    
                 </div>
 
                 <div class ="row">
