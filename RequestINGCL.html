@@ -67,7 +67,7 @@
 
 
         <?
-        $sql = "SELECT * FROM request WHERE C_id='{$user_id}'";
+        $sql = "SELECT * FROM request WHERE C_id='{$user_id}' AND Complete != 2";
         $res = $dbConnect->query($sql);
         $row = mysqli_fetch_array($res);
 
