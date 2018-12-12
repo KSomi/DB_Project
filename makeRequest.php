@@ -11,19 +11,21 @@ $PL_Prof = $_POST['PL_Prof'];
 $minP = $_POST['minP'];
 $maxP = $_POST['maxP'];
 
+$c = $_POST['c'];
+$j = $_POST['j'];
+$js = $_POST['js'];
+$p = $_POST['p'];
+$e = $_POST['e'];
+
 $target_dir = "requestfiles/";
 $target_file = $target_dir . basename($_FILES["RQfile"]["name"]);
 
-if(move_uploaded_file($_FILES["RQfile"]["tmp_name"], $target_file))
-{
-  echo "<script>alert(\"파일완료\");</script>";
-}
-else {
-  echo "<script>alert(\"파일에러\");</script>";
-}
+chmod("requestfiles", 0777);
 
-$sql = "INSERT INTO request(C_id, Budget, Start_date, End_date, PL, Proficiency, Minimum_career, Min_num_person, Max_num_person)
-VALUES('{$c_id}','{$budget}','{$datestart}','{$dateend}','{$PL}','{$PL_Prof}','{$career}','{$minP}','{$maxP}')";
+move_uploaded_file($_FILES["RQfile"]["tmp_name"], $target_file);
+
+$sql = "INSERT INTO request(C_id, Budget, Start_date, End_date, Pro_c, Pro_j, Pro_js, Pro_p, Pro_e, Minimum_career, Min_num_person, Max_num_person)
+VALUES('{$c_id}','{$budget}','{$datestart}','{$dateend}','{$c}','{$j}','{$js}','{$p}','{$e}','{$career}','{$minP}','{$maxP}')";
 
 if($dbConnect->query($sql))
 {

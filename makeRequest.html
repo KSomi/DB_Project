@@ -32,18 +32,19 @@
               if(document.getElementById("PL_type").value == "etc")
               {
                 document.getElementById("PL").value = document.getElementById("PL_txt").value;
+                document.getElementById("e").value = document.getElementById("PL_Prof").value;
               }
               else
               {
                 document.getElementById("PL").value = document.getElementById("PL_type").value;
               }
+              if(document.getElementById("PL_type").value=="C/C++"){document.getElementById("c").value = document.getElementById("PL_Prof").value;}
+              if(document.getElementById("PL_type").value=="Java"){document.getElementById("j").value = document.getElementById("PL_Prof").value;}
+              if(document.getElementById("PL_type").value=="JavaScript"){document.getElementById("js").value = document.getElementById("PL_Prof").value;}
+              if(document.getElementById("PL_type").value=="Python"){document.getElementById("p").value = document.getElementById("PL_Prof").value;}
+
               document.getElementById("frm").submit();
            }
-        </script>
-        <script>
-        $(function(){
-            $("#includedContent").load("menubar_MP.html");
-        });
         </script>
         <?
           include "dbConnect.php";
@@ -56,12 +57,29 @@
 
     <body>
         <div class ="page-holder">
-            <div id="includedContent"></div>
+            <a href ="Home-LI.html" id="logo"></a>
+
+            <div class="navigation-holder">
+
+                <div class="menuB">
+                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
+                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
+                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
+                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
+                    <br>
+                </div>
+
+            </div>
 
             <div class= "head">- My Page (Client)</div>
 
 
             <form action="makeRequest.php" method="post" enctype="multipart/form-data" name="frm" id="frm">
+                <input type="hidden" name="c" id="c" value="0">
+                <input type="hidden" name="j" id="j" value="0">
+                <input type="hidden" name="js" id="js" value="0">
+                <input type="hidden" name="p" id="p" value="0">
+                <input type="hidden" name="e" id="e" value="0">
               <div class ="info-holder">
                   <div class ="menu">의뢰 신청</div>
 
