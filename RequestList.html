@@ -28,19 +28,7 @@
 
     </style>
     <script type="text/javascript">
-        function Mypage(){
-            window.location.href = 'MyPage_CL.html';
-        }
-
-        function moreRQ(){
-            window.location.href = 'RequestList.html';
-        }
-        function moreFB(){
-            window.location.href = 'FreeBoard.html';
-        }
-        function moreFAQ(){
-            window.location.href = 'FAQ.html';
-        }
+        
         function page(){
 
         }
@@ -55,7 +43,11 @@
 
 
     </script>
-
+    <script>
+        $(function(){
+            $("#includedContent").load("menubar.html");
+        });
+    </script>
     <?
       include "dbConnect.php";
       include "session.php";
@@ -68,36 +60,7 @@
 
 
 <div class="page-holder">
-    <div class="navigation-holder">
-
-        <a href ="Home-LI.html" id="logo"></a>
-        <div class="menuB">
-            <button class="button" id="mypage" onclick="Mypage()">마이페이지</button>
-            <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
-            <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
-            <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
-        </div>
-
-	<div class="box">
-		<b class="txtBlue"> 공지 사항 </b><br/>
-
-
-	</div>
-    </div>
-
-    <div class="info-holder">
-        <div class="hd"><br>내 정보</div><br>
-        <div class="ct">
-            &nbsp;알림: &nbsp;&nbsp;<a href="alarm.html">0건</a>
-            <br><br>
-            &nbsp;현재 진행중인 프로젝트: &nbsp;&nbsp;<a href="RequestING.html">0건</a>
-            <br><br>
-            &nbsp;완료한 프로젝트: &nbsp;&nbsp;<a href="finishedP.html">0건</a>
-
-            <br><br>
-        </div>
-    </div>
-
+    <div id="includedContent"></div>
 
     <div class="body-holder">
 
