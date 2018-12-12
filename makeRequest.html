@@ -19,21 +19,25 @@
            $(document).ready(() => {
                 $('#date').dateRangePicker();
            });
-           function makeRQ(){
-
-           }
 
            function Changed(a) {
-               if(a.value == ""){
+               if(a.value == "etc"){
                    $("#PL_txt").attr("disabled", false);
-               }  
+               }
+               else {
+                   $("#PL_txt").attr("disabled", true);
+               }
            }
-           function FormSubmit(formExist) {
-               var HDExist = formExist.elements["PL"];
-               var PLExist = formExist.elements["PL_type"];
-               var txtExist = formExist.elements["PL_txt"];
-               if (HDExist && PLExist && txtExist)
-                   HDExist.value = (PLExist.value == "") ? txtExist.value : PLExist.value;
+           function makeRQ() {
+              if(document.getElementById("PL_type").value == "etc")
+              {
+                document.getElementById("PL").value = document.getElementById("PL_txt").value;
+              }
+              else
+              {
+                document.getElementById("PL").value = document.getElementById("PL_type").value;
+              }
+              document.getElementById("frm").submit();
            }
         </script>
         <?
@@ -64,65 +68,78 @@
             <div class= "head">- My Page (Client)</div>
 
 
-            <div class ="info-holder">
-                <div class ="menu">의뢰 신청</div>
+            <form action="makeRequest.php" method="post" enctype="multipart/form-data" name="frm" id="frm">
+              <div class ="info-holder">
+                  <div class ="menu">의뢰 신청</div>
 
-                <div class ="row">
-                    <div class ="label">의뢰 금액:</div>
-                    <input class="fit" id="prof">
-                </div>
+                  <input type="hidden" name="c_id" value="<? echo "$user_id"?>">
 
-                <div class ="row">
-                    <div class ="label">시작/종료일:</div>
-                    <input class="fit" id="date">
-                </div>
+                  <div class ="row">
+                      <div class ="label">의뢰 금액:</div>
+                      <input class="fit" id="budget" name="budget">
+                  </div>
+<!--
+                  <div class ="row">
+                      <div class ="label">시작/종료일:</div>
+                      <input class="fit" id="date" name="date">
+                  </div>
+-->
+                  <div class ="row">
+                      <div class ="label">시작일:</div>
+                      <input class="fit" id="datestart" name="datestart">
+                  </div>
+                  <div class ="row">
+                      <div class ="label">종료일:</div>
+                      <input class="fit" id="dateend" name="dateend">
+                  </div>
 
-                <div class ="row">
-                    <div class ="label">최소 경력 (0~):</div>
-                    <input class="fit" id="career">
-                </div>
+                  <div class ="row">
+                      <div class ="label">최소 경력 (0~):</div>
+                      <input class="fit" id="career" name="career">
+                  </div>
 
-                <div class ="row">
-                    <div class ="label">언어 종류:</div>
-                    
-                    <input type="hidden" name="PL"/>
-                        <select name="PL_type" onchange="Changed(this);">
-                            <option disabled selected value> -- select a langauge type -- </option>
-                            <option value="C/C++">C/C++</option>
-                            <option value="Java">Java</option>
-                            <option value="JavaScript">JavaScript</option>
-                            <option value="Python">Python</option>
-                            <option id="etc" value="">etc</option>
-                            <option value="무관">무관</option>
-                        </select> &nbsp&nbsp<input type="text" id="PL_txt" name="PL_txt" disabled>
-                        <button type="submit" hidden="" ></button>
-                    
-                </div>
+                  <div class ="row">
+                      <div class ="label">언어 종류:</div>
 
-                <div class ="row">
-                    <div class ="label">언어 능숙도:</div>
-                    <input class="fit" id="PL_Prof">
-                </div>
+                      <input type="hidden" id="PL" name="PL"/>
+                          <select name="PL_type" id="PL_type" onchange="Changed(this);">
+                              <option disabled selected value> -- select a langauge type -- </option>
+                              <option value="C/C++">C/C++</option>
+                              <option value="Java">Java</option>
+                              <option value="JavaScript">JavaScript</option>
+                              <option value="Python">Python</option>
+                              <option value="etc">etc</option>
+                              <option value="무관">무관</option>
+                          </select> &nbsp&nbsp<input type="text" id="PL_txt" name="PL_txt" disabled>
+                          <button type="submit" hidden="" ></button>
 
-                <div class ="row">
-                    <div class ="label">최소/최대 인원:</div>
-                    <input class="fit" id="minmaxP">
-                </div>
+                  </div>
 
-                <div class ="row">
-                    <form action=".php">
-                         &nbsp Select a file: <br>&nbsp<input type="file" name="RQfile" id="RQfile"><br><br>
-                        &nbsp<input type="submit" value="파일 등록">
-                    </form>
-                </div>
+                  <div class ="row">
+                      <div class ="label">언어 능숙도:</div>
+                      <input class="fit" id="PL_Prof" name="PL_Prof">
+                  </div>
 
-                <br>
-                <div class="row">
-                    <button class="savebtn" id="store" onclick="makeRQ()">의뢰 신청</button>
-                </div>
-            </div>
+                  <div class ="row">
+                      <div class ="label">최소 인원:</div>
+                      <input class="fit" id="minP" name="minP">
+                  </div>
 
+                  <div class ="row">
+                      <div class ="label">최대 인원:</div>
+                      <input class="fit" id="maxP" name="maxP">
+                  </div>
 
+                  <div class ="row">
+                          &nbsp Select a file: <br>&nbsp<input type="file" name="RQfile" id="RQfile"><br><br>
+                  </div>
+
+                  <br>
+                  <div class="row">
+                      <button type="button" class="savebtn" id="store" onclick="makeRQ()">의뢰 신청</button>
+                  </div>
+              </div>
+            </form>
         </div>
     </body>
 </html>
