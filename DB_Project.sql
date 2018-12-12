@@ -141,7 +141,7 @@ CREATE TABLE `REQUEST` (
   `Minimum_career` text,
   `Min_num_person` int(5),
   `Max_num_person` int(5),
-  `Accepted` tinyint(1) NOT NULL,
+  `Accepted` varchar(30),
   `Accept_f` varchar(30),
   `Accept_t` varchar(30),
   PRIMARY KEY (`NUM`),

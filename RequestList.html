@@ -141,6 +141,14 @@
 
         </div>
 
+        <div class="RQlist">
+            <div class= "hd">의뢰 신청</div>
+            <form method='post' action = 'RequestRequest.php'>
+              <input type="hidden" id="user_id" name="user_id" value="<?=$user_id?>">
+            번호 입력: <input  id="numb" name="numb" required>  <input type="submit" value="신청" class="savebtn">
+            </form>
+        </div>
+
     </div>
 </div>
 
@@ -159,6 +167,7 @@ function f(num, bud, c, j,js,p,e,car,day)
 <?
 
 $i = 0;
+
 
 $sql = "SELECT * FROM freelancer WHERE ID='{$user_id}'";
 $res = $dbConnect->query($sql);
@@ -191,7 +200,6 @@ while($row = mysqli_fetch_array($res))
   $req_e = $row['Pro_e'];
   $req_career = $row['Minimum_career'];
   $req_day = $row['Start_date'];
-
 
   echo "<script>    if($req_c !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>C/C++</td></tr>\"; }    if($req_j !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Java</td></tr>\"; }    if($req_js !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>JavaScript</td></tr>\"; }    if($req_p !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Python</td></tr>\"; }    if($req_e !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>etc</td></tr>\"; }    </script>";
 
