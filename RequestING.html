@@ -57,13 +57,13 @@
 
 
         <?
-        $sql = "SELECT * FROM request WHERE Accepted='{$user_id}' AND Complete=1";
+        $sql = "SELECT * FROM request WHERE Accepted='{$user_id}' AND Complete=0";
         $res = $dbConnect->query($sql);
         $row = mysqli_fetch_array($res);
         $num = $row['NUM'];
         $com = $row['Complete'];
 
-        if($com != "1"){ echo "<script>document.getElementById('n').style.display = \"none\"</script>";}
+        if($com != "0"){ echo "<script>document.getElementById('n').style.display = \"none\"</script>";}
         echo "<script>document.getElementById('req').innerHTML = \"$num\"</script>";
         echo "<script>document.getElementById('req_num').value = \"$num\"</script>";
         ?>
