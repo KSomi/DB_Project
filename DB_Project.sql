@@ -142,7 +142,7 @@ CREATE TABLE `REQUEST` (
   `Minimum_career` int(3),
   `Min_num_person` int(5),
   `Max_num_person` int(5),
-  `Accepted` varchar(30),
+  `Accepted` int(3) NOT NULL DEFAULT '0',
   `Accept_f` varchar(30),
   `Accept_t` varchar(30),
   `Complete` int(3) NOT NULL DEFAULT '0',
