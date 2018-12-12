@@ -1,9 +1,12 @@
+
+
 <?php
 include "dbConnect.php";
 include "session.php";
 
 $user_id = $_POST['user_id'];
-$user_pw =  md5($user_pw=$_POST['user_pw']);
+$user_pw =  md5($_POST['user_pw']);
+$ad_pw = $_POST['user_pw'];
 
 $sql = "SELECT * FROM client WHERE ID = '{$user_id}' AND Password = '{$user_pw}'";
 $res = $dbConnect->query($sql);
