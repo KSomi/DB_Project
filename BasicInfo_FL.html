@@ -18,6 +18,12 @@
 
            }
         </script>
+        <script>
+            $(function(){
+                $("#includedContent").load("menubar_MP.html");
+            });
+        </script>
+        
         <?
           include "dbConnect.php";
           include "session.php";
@@ -38,19 +44,7 @@
 
     <body>
         <div class ="bono">
-            <a href ="Home-LI.html" id="logo"></a>
-
-            <div class="navigation-holder">
-
-                <div class="menuB">
-                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
-                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
-                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
-                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
-                    <br>
-                </div>
-
-            </div>
+            <div id="includedContent"></div>
 
             <div class= "head">- My Page</div>
 
