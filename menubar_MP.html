@@ -25,12 +25,13 @@ header("Content-type: text/html; charset=utf-8");
     
     <script type="text/javascript">
         var User_Type;
+	User_Type = "<?php echo $user_type ?>";
         var User_id;
         function Mypage(){
             // 관리자, 프리랜서, 의뢰자에 따라
             // _admin, _FL, _CL
             User_id = "<?php echo $user_id ?>";
-            User_Type = "<?php echo $user_type ?>";
+            
             
             if(User_Type == "FL"){
                 window.location.href = 'MyPage_FL.html';
@@ -42,7 +43,13 @@ header("Content-type: text/html; charset=utf-8");
         }
       
         function moreRQ(){
-            window.location.href = 'RequestList.html';
+            if(User_Type == "FL"){
+                window.location.href = 'RequestList.html';
+            } else if(User_Type == "CL"){
+                window.location.href = 'RequestINGCL.html';
+            } else if(User_Type == "AD"){
+                window.location.href = 'RequestList.html';
+            }
         }
         
         function moreFB(){
