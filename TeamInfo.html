@@ -13,17 +13,27 @@
 
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript">
 
-        </script>
         <?
           include "dbConnect.php";
           include "session.php";
 
+          $team_mate = [];
+          $i = 0;
+
           $user_id = $_SESSION['user_id'];
+          $sql = "SELECT * FROM teammate WHERE Teammate = '{$user_id}'";
+          $res = $dbConnect->query($sql);
+          $row = mysqli_fetch_array($res);
 
-        ?>
+          $Teamname = $row['Teamname'];
 
+          $sql = "SELECT * FROM team WHERE Name = '{$Teamname}'";
+          $res = $dbConnect->query($sql);
+          $row = mysqli_fetch_array($res);
+
+          $team_leader = $row['Leader'];
+          ?>
     </head>
 
     <body>
@@ -49,20 +59,34 @@
                 <div class ="menu">팀 정보</div>
 
                 <div class ="row">
-                    <div class ="label">팀 이름:</div>
+                    <div class ="label">팀 이름: <?echo "$Teamname";?></div>
                 </div>
 
                 <div class ="row">
-                    <div class ="label">팀장:</div>
+                    <div class ="label">팀장: <?echo "$team_leader";?></div>
                 </div>
 
                 <div class ="row">
-                    <div class ="label">팀원 리스트:</div>
+                    <div class ="label" id="teammate">팀원:</div>
                 </div>
 
             </div>
 
 
         </div>
+
+
+        <?
+
+        $sql = "SELECT * FROM teammate WHERE Teamname = '{$Teamname}'";
+        $res = $dbConnect->query($sql);
+        while($row = mysqli_fetch_array($res))
+        {
+          $team_mate[$i] = $row['Teammate'];
+          echo ("<script>document.getElementById(\"teammate\").innerHTML += \"$team_mate[$i] \" ;</script>");
+          $i = $i + 1;
+        }
+
+      ?>
     </body>
 </html>
