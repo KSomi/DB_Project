@@ -19,9 +19,7 @@
         
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript">
-            function edit(){
-                window.location.href("editFL_admin");
-            }
+           
 
         </script>
         <script>
@@ -47,7 +45,7 @@
                 </ul>
                 <p id="FLlist"></p>
                 <div class ='row'>
-                <button class='savebtn' onclick="edit()">수정</button>
+             
                 </div>
                 
             </div>
@@ -56,8 +54,9 @@
         </div>
         <script type="text/javascript">
             var rarr = <?php echo json_encode($rowFL) ?>;
+        
             for(var i = 0; i <rarr.length; i++){
-                document.getElementById("FLlist").innerHTML += "&nbsp"+(i+1)+":  "+"<a href=''>"+rarr[i]+"<br>"+"</a>";
+                document.getElementById("FLlist").innerHTML += "&nbsp"+(i+1)+":  "+"<a href = 'EditFL_admin.php?id=" +rarr[i]+ "'>"+rarr[i]+"<br>"+"</a>";
             }
         </script>
     </body>
