@@ -112,12 +112,13 @@ CREATE TABLE `TEAMMATE` (
 
 DROP TABLE IF EXISTS `REQUEST`;
 CREATE TABLE `REQUEST` (
-  `NUM` int(30) NOT NULL,
+  `NUM` int(30) NOT NULL AUTO_INCREMENT,
   `Upload_time` timestamp NOT NULL,
   `C_id` varchar(30) NOT NULL,
   `Budget` int(10),
   `Start_date`timestamp,
-  `End_data`timestamp,
+  `End_date`timestamp,
+  `Pl` text,
   `Proficiency` text,
   `Minimum_career` text,
   `Min_num_person` int(5),
