@@ -177,9 +177,9 @@ CREATE TABLE `REQUEST` (
 DROP TABLE IF EXISTS `PORTFOLIO`;
 CREATE TABLE `PORTFOLIO` (
   `P_fid` varchar(30) NOT NULL,
-  `In` tinyint(1) NOT NULL,
+  `num` int(3) NOT NULL,
   `Out` tinyint(1) NOT NULL,
-  `P_Num` int(10) NOT NULL,
+  `P_Num` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`P_Num`),
 
   CONSTRAINT pfid
