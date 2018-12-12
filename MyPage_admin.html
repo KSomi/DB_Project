@@ -14,42 +14,19 @@
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
         
         <script type="text/javascript">
-            function Mypage(){
-            // 관리자, 프리랜서, 의뢰자에 따라
-            // _admin, _FL, _CL
-            window.location.href = 'MyPage_FL.html';
-            }
-      
-            function moreRQ(){
-                window.location.href = 'RequestList.html';
-            }
-        
-            function moreFB(){
-                window.location.href = 'FreeBoard.html';
-            }
-            function moreFAQ(){
-                window.location.href = 'FAQ.html';
-            }
+            
         </script>
-        
+        <script>
+            $(function(){
+                $("#includedContent").load("menubar_MP.html");
+            });
+        </script>
     </head>
     
     <body>
         <div class ="page-holder">
-            <a href ="Home-LI.html" id="logo"></a>
-            <div class="navigation-holder">
-        
-             
-        
-                <div class="menuB">
-                    <button class="button" id="Mypage" onclick="Mypage()">마이페이지</button>
-                    <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
-                    <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
-                    <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
-                    <br>
-                </div>
-
-            </div>
+            <div id="includedContent"></div>
+          
             <div class= "head">- Administrator Page</div>
             <div class ="row">
                 <div class ="info-holder">
