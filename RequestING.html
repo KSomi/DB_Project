@@ -48,13 +48,16 @@
 
             <div class ="info-holder">
                 <div class ="menu">수행 중인 의뢰</div>
+                <div id="n">
                 <div id="req">    </div>
                 <div > 번 의뢰   </div>
                 <br>
                 <form method='post' action = 'complete.php'>
                   <input type="hidden" id="req_num" name="req_num" value="">
+                  평점<input type="text" name="star">
                   <input type="submit" value="완료">
                 </form>
+              </div>
             </div>
 
 
@@ -62,11 +65,13 @@
 
 
         <?
-        $sql = "SELECT * FROM request WHERE Accepted='{$user_id}'";
+        $sql = "SELECT * FROM request WHERE Accepted='{$user_id}' AND Complete=0";
         $res = $dbConnect->query($sql);
         $row = mysqli_fetch_array($res);
         $num = $row['NUM'];
+        $com = $row['Complete'];
 
+        if($com != "0"){ echo "<script>document.getElementById('n').style.display = \"none\"</script>";}
         echo "<script>document.getElementById('req').innerHTML = \"$num\"</script>";
         echo "<script>document.getElementById('req_num').value = \"$num\"</script>";
         ?>
