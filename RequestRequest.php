@@ -4,7 +4,7 @@ include "dbConnect.php";
 $user_id = $_POST['user_id'];
 $num = $_POST['numb'];
 
-$sql = "UPDATE request SET Accepted='{$user_id}', Complete='1' WHERE '{$num}' = NUM";
+$sql = "UPDATE request SET Accepted='{$user_id}' WHERE '{$num}' = NUM";
 $res = $dbConnect->query($sql);
 
 
