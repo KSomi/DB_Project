@@ -47,34 +47,11 @@ header("Content-type: text/html; charset=utf-8");
     }
 
     </style>
-    <script type="text/javascript">
-        var User_Type;
-        var User_id;
-        function Mypage(){
-            // 관리자, 프리랜서, 의뢰자에 따라
-            // _admin, _FL, _CL
-            User_id = "<?php echo $user_id ?>";
-            User_Type = "<?php echo $user_type ?>";
-            
-            if(User_Type == "FL"){
-                window.location.href = 'MyPage_FL.html';
-            } else if(User_Type == "CL"){
-                window.location.href = 'MyPage_CL.html';
-            } else if(User_Type == "AD"){
-                window.location.href = 'MyPage_AD.html';
-            }
-        }
-      
-        function moreRQ(){
-            window.location.href = 'RequestList.html';
-        }
-        
-        function moreFB(){
-            window.location.href = 'FreeBoard.html';
-        }
-        function moreFAQ(){
-            window.location.href = 'FAQ.html';
-        }
+    <script type="text/javascript"></script>
+    <script>
+    $(function(){
+        $("#includedContent").load("menubar.html");
+    });
     </script>
 </head>
 
@@ -83,37 +60,7 @@ header("Content-type: text/html; charset=utf-8");
     
     
 <div class="page-holder">
-    
-    
-    <div class="navigation-holder">
-       <a href ="Home-LI.html" id="logo"></a>
-        <div class="menuB">
-            <button class="button" id="mypage" onclick="Mypage()">마이페이지</button>
-            <button class="button" id="anotherM" onclick="moreRQ()">의뢰 목록</button>
-            <button class="button" id="anotherM" onclick="moreFB()">자유게시판</button>
-            <button class="button" id="anotherM" onclick="moreFAQ()">FAQ</button>
-            <br>
-        </div>
-        
-        
-	<div class="box">
-		<b class="txtBlue"> 공지 사항 </b>: 윽
-                
-		
-	</div>
-    </div>
-    <div class="info-holder">
-        <div class="hd"><br>내 정보</div><br>
-        <div class="ct">
-            &nbsp;알림: &nbsp;&nbsp;<a href="alarm.html">0건</a>
-            <br><br>
-            &nbsp;현재 진행중인 프로젝트: &nbsp;&nbsp;<a href="RequestING.html">0건</a>
-            <br><br>
-            &nbsp;완료한 프로젝트: &nbsp;&nbsp;<a href="finishedP.html">0건</a>
-            <br><br>
-        </div>
-    </div>
-        
+    <div id="includedContent"></div>
     <div class="body-holder">
 
         <div class="RQlist">
