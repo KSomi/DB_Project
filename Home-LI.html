@@ -67,7 +67,7 @@ header("Content-type: text/html; charset=utf-8");
             <div class='hd'>의뢰 목록</div>
             <br>
             
-            <table class="table">
+            <table class="table" id="t_list">
                 <tr>
                     <th>프로젝트</th>
                     <th>개발 금액</th>
@@ -75,29 +75,7 @@ header("Content-type: text/html; charset=utf-8");
                     <th>경력</th>
                     <th>시작일</th>
                 </tr>
-                <tr>
-                    <td><a href="view.php?">example project</a></td>
-                    <td>금액_ex</td>
-                    <td>언어_ex</td>
-                    <td>경력_ex</td>
-                    <td>시작일_ex</td>
-                </tr>
-                
-                <tr>
-                    <td><a href="view.php?">example project</a></td>
-                    <td>금액_ex</td>
-                    <td>언어_ex</td>
-                    <td>경력_ex</td>
-                    <td>시작일_ex</td>
-                </tr>
-                
-                <tr>
-                    <td><a href="view.php?">example project</a></td>
-                    <td>금액_ex</td>
-                    <td>언어_ex</td>
-                    <td>경력_ex</td>
-                    <td>시작일_ex</td>
-                </tr>
+              
             </table>   
             <br>
             
@@ -147,6 +125,50 @@ header("Content-type: text/html; charset=utf-8");
     </div>
 </div>
     
+	<?
+
+$i = 0;
+
+
+$sql = "SELECT * FROM freelancer WHERE ID='{$user_id}'";
+$res = $dbConnect->query($sql);
+$row = mysqli_fetch_array($res);
+
+$user_career = $row['Career'];
+
+$sql = "SELECT * FROM proficiency WHERE ID='{$user_id}'";
+$res = $dbConnect->query($sql);
+$row = mysqli_fetch_array($res);
+
+$c = $row['Pro_c'];
+$j = $row['Pro_j'];
+$js = $row['Pro_js'];
+$p = $row['Pro_p'];
+$e = $row['Pro_e'];
+
+$sql = "SELECT * FROM request WHERE Complete = '0' AND Accepted = '0' AND Minimum_career <= '{$user_career}' AND Pro_c <= '{$c}' AND Pro_j <= '{$j}' AND Pro_js <= '{$js}' AND Pro_p <= '{$p}' AND Pro_e <= '{$e}'";
+
+$res = $dbConnect->query($sql);
+$arr = [];
+$count = 0;
+while($row = mysqli_fetch_array($res))
+{
+  $number = $row['NUM'];
+  $budget = $row['Budget'];
+  $req_c = $row['Pro_c'];
+  $req_j = $row['Pro_j'];
+  $req_js = $row['Pro_js'];
+  $req_p = $row['Pro_p'];
+  $req_e = $row['Pro_e'];
+  $req_career = $row['Minimum_career'];
+  $req_day = $row['Start_date'];
+  $arr[$count++]=[$number,$budget,$req_c,$req_j,$req_js,$req_p,$req_e,$req_career,$req_day];
+  echo "<script>    if($req_c !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>C/C++</td></tr>\"; }    if($req_j !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Java</td></tr>\"; }    if($req_js !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>JavaScript</td></tr>\"; }    if($req_p !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>Python</td></tr>\"; }    if($req_e !=0){document.getElementById('t_list').innerHTML +=\"<tr><td>\"+\"$number\"+\"</td><td>\"+\"$budget\"+\"</td><td>\"+\"$req_day\"+\"</td><td>\"+\"$req_career\"+\"</td><td>etc</td></tr>\"; }    </script>";
+
+    $i = $i + 1;
+}
+
+?>
     
 </body>
 </html>
