@@ -14,8 +14,6 @@ $maxP = $_POST['maxP'];
 $target_dir = "requestfiles/";
 $target_file = $target_dir . basename($_FILES["RQfile"]["name"]);
 
-chmod("requestfiles", 0777); 
-
 if(move_uploaded_file($_FILES["RQfile"]["tmp_name"], $target_file))
 {
   echo "<script>alert(\"파일완료\");</script>";
