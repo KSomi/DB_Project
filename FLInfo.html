@@ -1,3 +1,9 @@
+<?php
+      include "adminInfo.php";
+      include "session.php";
+       
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,9 +18,11 @@
         <title>Admin - FL</title>
         
         <link href="MyPage.css" rel="stylesheet" type="text/css" />
-        
         <script type="text/javascript">
-           
+            function edit(){
+                window.location.href("editFL_admin");
+            }
+
         </script>
         <script>
         $(function(){
@@ -27,15 +35,30 @@
     <body>
         <div class ="page-holder">
             <div id="includedContent"></div>
+            
             <div class= "head">- Admin Page</div>
             
             
             <div class ="info-holder">
                 <div class ="menu">프리랜서 목록</div>
+                <ul>
+                    <li></li>
+      
+                </ul>
+                <p id="FLlist"></p>
+                <div class ='row'>
+                <button class='savebtn' onclick="edit()">수정</button>
+                </div>
                 
             </div>
             
             
         </div>
+        <script type="text/javascript">
+            var rarr = <?php echo json_encode($rowFL) ?>;
+            for(var i = 0; i <rarr.length; i++){
+                document.getElementById("FLlist").innerHTML += "&nbsp"+(i+1)+":  "+"<a href=''>"+rarr[i]+"<br>"+"</a>";
+            }
+        </script>
     </body>
 </html>
