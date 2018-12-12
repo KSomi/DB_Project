@@ -27,7 +27,7 @@
 
           $user_id = $_SESSION['user_id'];
 
-          $sql = "SELECT * FROM freelancer WHERE ID='{$user_id}'";
+          $sql = "SELECT * FROM client WHERE ID='{$user_id}'";
           $res = $dbConnect->query($sql);
           $row = mysqli_fetch_array($res);
 
